@@ -5,4 +5,5 @@
     <Project Path="src/Commerce.api/Commerce.api.csproj" />
     <Project Path="src/Commerce.Domain/Commerce.Domain.csproj" />
   </Folder>
+  <Project Path="src/Commerce.Domain.Tests/Commerce.Domain.Tests.csproj" Id="dbb13ece-a114-405c-80b9-44e0955af827" />
 </Solution>
