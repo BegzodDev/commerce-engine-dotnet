@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="Commerce.Application/Commerce.Application.csproj" Id="eea7b2ea-6158-4959-b6ba-0767f60866e8" />
-    <Project Path="Commerce.Infrastructure/Commerce.Infrastructure.csproj" Id="5e22ad3d-2b0d-43a8-a9a2-898362c0923a" />
+    <Project Path="Commerce.Infrastructure/Commerce.Infrastructure.csproj" Id="856d2bbc-1365-41de-8f5c-38354600b6bf" />
     <Project Path="src/Commerce.api/Commerce.api.csproj" />
     <Project Path="src/Commerce.Domain.Tests/Commerce.Domain.Tests.csproj" Id="dbb13ece-a114-405c-80b9-44e0955af827" />
     <Project Path="src/Commerce.Domain/Commerce.Domain.csproj" />
