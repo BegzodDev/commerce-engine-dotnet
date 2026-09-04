@@ -21,6 +21,9 @@ namespace Commerce.Domain.Entities
             IsActive = true;
             CreatedAt = DateTime.UtcNow;
         }
+        /// <summary>
+        /// IDENIFY FOR PRODUCT
+        /// </summary>
         public Guid Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
