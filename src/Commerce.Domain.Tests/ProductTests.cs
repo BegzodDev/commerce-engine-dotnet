@@ -83,5 +83,56 @@ namespace Commerce.Domain.Tests
             // Assert
             Assert.Equal(7, product.Stock);
         }
+
+        [Fact]
+        public void DecreaseStock_WithZeroQuantity_ShouldThrowException()
+        {
+            // Arrange
+            var product = new Product(
+                "iPhone 17",
+                "Apple smartphone",
+                999.99m,
+                10);
+
+            // Act
+            var action = () => product.DecreaseStock(0);
+
+            // Assert
+            Assert.Throws<ArgumentException>(action);
+        }
+
+        [Fact]
+        public void ChangePrice_WithValidPrice_ShouldUpdatePrice()
+        {
+            // Arrange
+            var product = new Product(
+                "iPhone 17",
+                "Apple smartphone",
+                999.99m,
+                10);
+
+            // Act
+            product.ChangePrice(1199.99m);
+
+            // Assert
+            Assert.Equal(1199.99m, product.Price);
+        }
+
+        [Fact]
+        public void ChangePrice_WithInvalidPrice_ShouldThrowException()
+        {
+            // Arrange
+            var product = new Product(
+                "iPhone 17",
+                "Apple smartphone",
+                999.99m,
+                10);
+
+            // Act
+            var action = () => product.ChangePrice(0);
+
+            // Assert
+            Assert.Throws<ArgumentException>(action);
+        }
     }
 }
