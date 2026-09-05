@@ -66,5 +66,22 @@ namespace Commerce.Domain.Tests
             // Act & Assert
             Assert.Throws<ArgumentException>(action);
         }
+
+        [Fact]
+        public void DecreaseStock_WithValidQuantity_ShouldDecreaseStock()
+        {
+            // Arrange
+            var product = new Product(
+                "iPhone 17",
+                "Apple smartphone",
+                999.99m,
+                10);
+
+            // Act
+            product.DecreaseStock(3);
+
+            // Assert
+            Assert.Equal(7, product.Stock);
+        }
     }
 }

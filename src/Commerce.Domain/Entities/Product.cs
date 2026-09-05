@@ -21,6 +21,17 @@ namespace Commerce.Domain.Entities
             IsActive = true;
             CreatedAt = DateTime.UtcNow;
         }
+
+        public void DecreaseStock(int quantity)
+        {
+            if (quantity <= 0)
+                throw new ArgumentException("Quantity must be greater than zero.");
+
+            if (quantity > Stock)
+                throw new InvalidOperationException("Insufficient stock.");
+
+            Stock -= quantity;
+        }
         /// <summary>
         /// IDENIFY FOR PRODUCT
         /// </summary>
