@@ -4,15 +4,14 @@ namespace Commerce.Domain.Entities
 {
     public class Product
     {
-        public Product(string name, string description, decimal price, int stock)
+        public Product(
+       string name,
+       string description,
+       decimal price,
+       int stock)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Product name cannot be empty");
-            if (price <= 0)
-                throw new ArgumentException("Price must be greater than zero.");
+            Validate(name, price, stock);
 
-            if (stock < 0)
-                throw new ArgumentException("Stock cannot be negative.");
             Id = Guid.NewGuid();
             Name = name;
             Description = description;
@@ -20,6 +19,21 @@ namespace Commerce.Domain.Entities
             Stock = stock;
             IsActive = true;
             CreatedAt = DateTime.UtcNow;
+        }
+
+        private static void Validate(
+            string name,
+            decimal price,
+            int stock)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Product name cannot be empty.");
+
+            if (price <= 0)
+                throw new ArgumentException("Price must be greater than zero.");
+
+            if (stock < 0)
+                throw new ArgumentException("Stock cannot be negative.");
         }
 
         public void DecreaseStock(int quantity)
@@ -32,9 +46,14 @@ namespace Commerce.Domain.Entities
 
             Stock -= quantity;
         }
-        /// <summary>
-        /// IDENIFY FOR PRODUCT
-        /// </summary>
+        public void ChangePrice(decimal newPrice)
+        {
+            if (newPrice <= 0)
+                throw new ArgumentException("Price must be greater than zero.");
+
+            Price = newPrice;
+        }
+
         public Guid Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
