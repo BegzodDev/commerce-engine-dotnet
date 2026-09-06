@@ -53,6 +53,10 @@ namespace Commerce.Domain.Entities
 
             Price = newPrice;
         }
+        public void Deactivate()
+        {
+            IsActive = false;
+        }
 
         public Guid Id { get; set; }
 
