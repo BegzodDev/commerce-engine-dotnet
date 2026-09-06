@@ -134,5 +134,22 @@ namespace Commerce.Domain.Tests
             // Assert
             Assert.Throws<ArgumentException>(action);
         }
+        [Fact]
+        public void Deactivate_ShouldSetProductAsInactive()
+        {
+            // Arrange
+            var product = new Product(
+                "iPhone 17",
+                "Apple smartphone",
+                999.99m,
+                10);
+
+            // Act
+            product.Deactivate();
+
+            // Assert
+            Assert.False(product.IsActive);
+        }
+
     }
 }
