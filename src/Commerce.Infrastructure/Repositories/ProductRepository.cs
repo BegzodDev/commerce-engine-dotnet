@@ -1,7 +1,7 @@
 ﻿using Commerce.Application.Products.Interfaces;
 using Commerce.Domain.Entities;
 using Commerce.Infrastructure.Data;
-using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore;
 
 namespace Commerce.Infrastructure.Repositories
 {
@@ -17,7 +17,13 @@ namespace Commerce.Infrastructure.Repositories
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
         }
-
-
+        public async Task<Product> GetByIdAsync(Guid Id)
+        {
+            return await _context.Products.FirstOrDefaultAsync(x=>x.Id == Id);
+        }
+        public async Task<List<Product>> GetAllAsync()
+        {
+            return await _context.Products.ToListAsync();
+        }
     }
 }
