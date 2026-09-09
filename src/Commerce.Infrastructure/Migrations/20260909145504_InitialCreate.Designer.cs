@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Commerce.Infrastructure.Migrations
 {
     [DbContext(typeof(CommonDbContext))]
-    [Migration("20260907163420_initial-commit")]
-    partial class initialcommit
+    [Migration("20260909145504_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
