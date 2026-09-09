@@ -7,33 +7,29 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// API endpointlarini boshqarish uchun Controllerlarni qo'shamiz.
 builder.Services.AddControllers();
-
-// API hujjatlarini yaratish uchun OpenAPI'ni qo'shamiz.
 builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
 
-// PostgreSQL bilan ishlash uchun CommonDbContext'ni sozlaymiz.
 builder.Services.AddDbContext<CommonDbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// IProductRepository so'ralganda ProductRepository beriladi.
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<GetProductsHandler>();
 
-// CreateProductHandler'ni DI container'ga qo'shamiz.
 builder.Services.AddScoped<CreateProductHandler>();
 
 var app = builder.Build();
 
-// Development muhitida OpenAPI endpointini yoqamiz.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    // Swagger JSON va Swagger UI'ni yoqamiz.
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-// Controllerlarni HTTP route'lar bilan bog'laymiz.
 app.MapControllers();
 
 app.Run();

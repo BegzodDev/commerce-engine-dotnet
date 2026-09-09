@@ -17,9 +17,12 @@ namespace Commerce.Infrastructure.Repositories
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
         }
-        public async Task<Product> GetByIdAsync(Guid Id)
+        public async Task<Product?> GetByIdAsync(Guid Id)
         {
-            return await _context.Products.FirstOrDefaultAsync(x=>x.Id == Id);
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == Id);
+            if (product is null)
+                throw new KeyNotFoundException("Product not found.");
+            return product;
         }
         public async Task<List<Product>> GetAllAsync()
         {
