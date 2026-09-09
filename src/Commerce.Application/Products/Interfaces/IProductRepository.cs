@@ -6,6 +6,6 @@ namespace Commerce.Application.Products.Interfaces
     {
         Task AddAsync(Product product);
         Task<List<Product>> GetAllAsync();
-        Task<Product> GetByIdAsync(Guid id);
+        Task<Product?> GetByIdAsync(Guid id);
     }
 }
