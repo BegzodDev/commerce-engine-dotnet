@@ -1,8 +1,6 @@
 ﻿using Commerce.Application.Products.CreateProduct;
-using Commerce.Application.Products.Interfaces;
-using Commerce.Domain.Entities;
+using Commerce.Application.Products.GetProducts;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Commerce.api.Controllers
 {
@@ -11,10 +9,12 @@ namespace Commerce.api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly CreateProductHandler _handler;
+        private readonly GetProductsHandler _getHandler;
 
-        public ProductController(CreateProductHandler handler)
+        public ProductController(CreateProductHandler handler, GetProductsHandler getHandler)
         {
             _handler = handler;
+            _getHandler = getHandler;
         }
 
 
@@ -34,6 +34,13 @@ namespace Commerce.api.Controllers
 
             return CreatedAtAction(nameof(Create), new { id = response.Id }, response);
 
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var response = await _getHandler.Handle();
+
+            return Ok(response);
         }
     }
 }

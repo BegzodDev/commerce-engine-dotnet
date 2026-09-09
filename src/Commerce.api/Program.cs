@@ -1,4 +1,5 @@
 using Commerce.Application.Products.CreateProduct;
+using Commerce.Application.Products.GetProducts;
 using Commerce.Application.Products.Interfaces;
 using Commerce.Infrastructure.Data;
 using Commerce.Infrastructure.Repositories;
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<CommonDbContext>(options =>
 
 // IProductRepository so'ralganda ProductRepository beriladi.
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<GetProductsHandler>();
 
 // CreateProductHandler'ni DI container'ga qo'shamiz.
 builder.Services.AddScoped<CreateProductHandler>();
