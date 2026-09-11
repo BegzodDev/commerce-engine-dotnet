@@ -28,5 +28,11 @@ namespace Commerce.Infrastructure.Repositories
         {
             return await _context.Products.ToListAsync();
         }
+
+        public async Task UpdateAsync(Product product)
+        {
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+        }
     }
 }
