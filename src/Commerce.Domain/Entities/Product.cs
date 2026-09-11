@@ -58,6 +58,15 @@ namespace Commerce.Domain.Entities
             IsActive = false;
         }
 
+        public void UpdateInformation(string name, string description)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Product name cannot be empty.");
+            if (string.IsNullOrWhiteSpace(description))
+                throw new ArgumentException("Product description cannot be empty.");
+            Name = name;
+            Description = description;
+        }
         public Guid Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
