@@ -39,17 +39,24 @@ namespace Commerce.Domain.Entities
         public void DecreaseStock(int quantity)
         {
             if (quantity <= 0)
-                throw new ArgumentException("Quantity must be greater than zero.");
+                throw new ArgumentException("Quantity must be greater than zero");
 
             if (quantity > Stock)
-                throw new InvalidOperationException("Insufficient stock.");
+                throw new InvalidOperationException("Insufficient stock");
 
             Stock -= quantity;
+        }
+
+        public void IncreaseStock(int quantity)
+        {
+            if (quantity <= 0)
+                throw new ArgumentException("Quantity must be greater than zero");
+            Stock += quantity;
         }
         public void ChangePrice(decimal newPrice)
         {
             if (newPrice <= 0)
-                throw new ArgumentException("Price must be greater than zero.");
+                throw new ArgumentException("Price must be greater than zero");
 
             Price = newPrice;
         }
@@ -61,9 +68,9 @@ namespace Commerce.Domain.Entities
         public void UpdateInformation(string name, string description)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Product name cannot be empty.");
+                throw new ArgumentException("Product name cannot be empty");
             if (string.IsNullOrWhiteSpace(description))
-                throw new ArgumentException("Product description cannot be empty.");
+                throw new ArgumentException("Product description cannot be empty");
             Name = name;
             Description = description;
         }
