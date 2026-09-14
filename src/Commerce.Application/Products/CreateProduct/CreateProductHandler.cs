@@ -16,11 +16,10 @@ namespace Commerce.Application.Products.CreateProduct
             _validator = validator;
 
         }
-
-
         public async Task<Product> Handle(CreateProductCommand command)
         {
             await _validator.ValidateAsync(command);
+
             var product = new Product(
             command.Name,
             command.Description,

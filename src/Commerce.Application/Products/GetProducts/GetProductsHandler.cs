@@ -9,7 +9,6 @@ namespace Commerce.Application.Products.GetProducts
         {
             _repository = repos;
         }
-
         public async Task<List<GetProductResponse>> Handle()
         {
             var products = await _repository.GetAllAsync();
