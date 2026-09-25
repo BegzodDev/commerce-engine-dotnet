@@ -26,7 +26,7 @@ namespace Commerce.Infrastructure.Repositories
         }
         public async Task<List<Product>> GetAllAsync()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products.Where(x=>x.IsActive).ToListAsync();
         }
 
         public async Task UpdateAsync(Product product)
