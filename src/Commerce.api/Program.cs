@@ -1,7 +1,9 @@
 using Commerce.Application.Products.CreateProduct;
+using Commerce.Application.Products.DeactivateProduct;
 using Commerce.Application.Products.GetProducts;
 using Commerce.Application.Products.Interfaces;
 using Commerce.Application.Products.UpdateProduct;
+using Commerce.Application.Products.UpdateStock;
 using Commerce.Infrastructure.Data;
 using Commerce.Infrastructure.Repositories;
 using FluentValidation;
@@ -22,6 +24,8 @@ builder.Services.AddScoped<GetProductsHandler>();
 builder.Services.AddScoped<CreateProductHandler>();
 builder.Services.AddScoped<UpdateProductHandler>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProductValidator>();
+builder.Services.AddScoped<UpdateStockHandler>();
+builder.Services.AddScoped<DeactivateProductHandler>();
 
 var app = builder.Build();
 
